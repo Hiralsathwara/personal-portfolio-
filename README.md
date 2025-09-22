@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Portfolio Website - Hiral Sathwara
 
 ## Overview
@@ -93,3 +94,7 @@ node server.js
 ## License
 
 This project is open source and free to use.
+=======
+# personal-portfolio-
+This is my personal portfolio website built using React, Tailwind CSS, and Node.js. It showcases my skills, projects, and experience in web development and data science. The site is fully responsive, includes a dynamic contact form with EmailJS/Nodemailer integration, and serves as a platform to connect and collaborate.
+>>>>>>> 4ec760aa97dcd9424e80c189807bcae55ed74851
