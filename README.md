@@ -1,43 +1,43 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 754ae7203d973f6e37d77c5f429230d3e99914e3
 # Portfolio Website - Hiral Sathwara
 
 ## Overview
 
-This is a personal portfolio website built with React.js and TailwindCSS for the frontend, and Node.js/Express for the backend contact form API.
+# 🌟 Personal Portfolio Website
 
-## Features
+This is my **Personal Portfolio Website**, designed and developed to showcase my **skills, projects, and experience** in the field of software development and data science.  
+The portfolio highlights my technical expertise with a clean, responsive, and modern user interface.
 
-- Hero section with animated gradient background
-- About Me section with skills and bio
-- Projects section with filters and hover effects
-- Resume / Experience section with timeline style
-- Contact form with backend email sending
-- Sticky navbar with smooth scrolling and dark mode toggle
-- Responsive design for desktop, tablet, and mobile
-- SEO meta tags and Google Analytics integration (to be added)
-- Lazy loading images
-- Footer with social icons and quick links
+---
 
-## Getting Started
+## 🚀 Key Highlights
+- Fully **responsive design** – optimized for desktop, tablet, and mobile devices.
+- **Interactive UI** built with reusable React components.
+- **Dynamic project showcase** with details and technology used.
+- **Contact form integration** with backend support.
+- **Optimized performance** and maintainable project structure.
 
-### Prerequisites
+---
 
-- Node.js and npm installed
-- Gmail account for sending emails (with app password if 2FA enabled)
+## 🛠️ Tech Stack
 
-### Frontend Setup
+### **Frontend**
+- ⚛️ **React.js** – for building reusable UI components.
+- 🎨 **Tailwind CSS** – for fast and responsive styling.
+- 🌐 **JavaScript (ES6+)** – for interactivity and logic.
+- 🖼️ HTML5 & CSS3 – for structure and design.
 
-1. Navigate to the `portfolio-site` directory:
+### **Backend**
+- 🟢 **Node.js** – runtime environment for server-side logic.
+- 🚀 **Express.js** – lightweight web framework for handling routes & APIs.
 
-```bash
-cd portfolio-site
-```
 
-2. Install dependencies:
 
-```bash
-npm install
-```
 
+<<<<<<< HEAD
 3. Create a `.env` file based on `.env.example`:
 
 ```bash
@@ -171,3 +171,6 @@ REACT_APP_API_URL=https://your-backend-service-name.onrender.com
 ## License
 
 This project is open source and free to use.
+=======
+
+>>>>>>> 754ae7203d973f6e37d77c5f429230d3e99914e3
