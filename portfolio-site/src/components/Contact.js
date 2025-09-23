@@ -15,8 +15,9 @@ const Contact = () => {
     setStatus('Sending...');
 
     try {
-      // Send data to your backend API
-      const response = await fetch('http://localhost:5000/api/contact', {
+      // Use environment variable for API URL, fallback to localhost for development
+      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      const response = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

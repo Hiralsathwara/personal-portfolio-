@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Portfolio Website - Hiral Sathwara
 
 ## Overview
@@ -39,7 +38,19 @@ cd portfolio-site
 npm install
 ```
 
-3. Start the development server:
+3. Create a `.env` file based on `.env.example`:
+
+```bash
+cp .env.example .env
+```
+
+4. Update the `.env` file with your backend URL:
+
+```
+REACT_APP_API_URL=https://your-backend-service-name.onrender.com
+```
+
+5. Start the development server:
 
 ```bash
 npm start
@@ -56,10 +67,16 @@ cd backend
 2. Install dependencies:
 
 ```bash
-npm install express cors nodemailer dotenv
+npm install
 ```
 
-3. Create a `.env` file based on `.env.example` and fill in your Gmail credentials:
+3. Create a `.env` file based on `.env.example`:
+
+```bash
+cp .env.example .env
+```
+
+4. Update the `.env` file with your Gmail credentials:
 
 ```
 EMAIL_USER=your-email@gmail.com
@@ -67,34 +84,90 @@ EMAIL_PASS=your-app-password
 PORT=5000
 ```
 
-4. Start the backend server:
+5. Start the backend server:
 
 ```bash
-node server.js
+npm start
 ```
 
 ### Running the Full Application
 
-- Start the backend server first (`node backend/server.js`).
+- Start the backend server first (`npm start` in `backend`).
 - Start the frontend React app (`npm start` in `portfolio-site`).
 - The frontend will send contact form submissions to the backend API.
 
-## Deployment
+## 🚀 Deployment on Render
 
-- Build the React app with `npm run build` in `portfolio-site`.
-- Deploy the frontend build and backend server to your preferred hosting platform.
-- Configure environment variables securely on the server.
+### Option 1: Using Render Dashboard (Recommended)
+
+#### Frontend Deployment (Static Site)
+1. Go to [Render Dashboard](https://dashboard.render.com)
+2. Click "New" → "Static Site"
+3. Connect your GitHub repository
+4. Fill in the details:
+   - **Name**: `portfolio-frontend` (or your preferred name)
+   - **Runtime**: `Node`
+   - **Build Command**: `cd portfolio-site && npm install && npm run build`
+   - **Publish Directory**: `portfolio-site/build`
+   - **Root Directory**: Leave empty (uses repository root)
+
+#### Backend Deployment (Web Service)
+1. Go to [Render Dashboard](https://dashboard.render.com)
+2. Click "New" → "Web Service"
+3. Connect your GitHub repository
+4. Fill in the details:
+   - **Name**: `portfolio-backend` (or your preferred name)
+   - **Runtime**: `Node`
+   - **Build Command**: `cd backend && npm install`
+   - **Start Command**: `cd backend && npm start`
+   - **Root Directory**: Leave empty (uses repository root)
+
+#### Environment Variables
+Add these to your backend service in Render:
+- `EMAIL_USER` = your Gmail address
+- `EMAIL_PASS` = your Gmail app password (if 2FA enabled)
+- `NODE_ENV` = production
+
+Add this to your frontend service in Render:
+- `REACT_APP_API_URL` = https://your-backend-service-name.onrender.com
+
+### Option 2: Using render.yaml (Automated)
+
+1. The `render.yaml` file is already configured in your repository
+2. Push your code to GitHub
+3. Render will automatically detect the configuration and create both services
+4. Set the environment variables in the Render dashboard for the backend service
+
+### Post-Deployment Steps
+
+1. **Update Frontend Environment Variable**: Once your backend is deployed, update the `REACT_APP_API_URL` in your frontend service to point to your backend URL.
+
+2. **Test the Contact Form**: Try sending a test message through your contact form to ensure everything is working.
+
+3. **Custom Domain** (Optional): You can add a custom domain in Render's dashboard.
+
+## Environment Variables Reference
+
+### Backend (.env)
+```
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-gmail-app-password
+PORT=5000
+NODE_ENV=production
+```
+
+### Frontend (.env)
+```
+REACT_APP_API_URL=https://your-backend-service-name.onrender.com
+```
 
 ## Notes
 
 - Replace the placeholder profile photo in `Hero.js` with your professional photo.
 - Add your resume PDF file to the `public` folder as `resume.pdf`.
 - Google Analytics integration and optional blog/testimonials sections can be added later.
+- Make sure to enable less secure app access or use app passwords for Gmail.
 
 ## License
 
 This project is open source and free to use.
-=======
-# personal-portfolio-
-This is my personal portfolio website built using React, Tailwind CSS, and Node.js. It showcases my skills, projects, and experience in web development and data science. The site is fully responsive, includes a dynamic contact form with EmailJS/Nodemailer integration, and serves as a platform to connect and collaborate.
->>>>>>> 4ec760aa97dcd9424e80c189807bcae55ed74851
