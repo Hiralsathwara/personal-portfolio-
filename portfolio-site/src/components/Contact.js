@@ -53,8 +53,8 @@ const Contact = () => {
     {
       icon: '📧',
       label: 'Email',
-      value: 'hiralsathwara2004@gmail.com',
-      href: 'mailto:hiralsathwara2004@gmail.com',
+      value: 'hiralsathwara2006@gmail.com',
+      href: 'mailto:hiralsathwara2006@gmail.com',
       gradient: 'from-blue-500 to-cyan-500'
     },
     {
