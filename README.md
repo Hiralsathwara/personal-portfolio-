@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> 754ae7203d973f6e37d77c5f429230d3e99914e3
 # Portfolio Website - Hiral Sathwara
 
 ## Overview
