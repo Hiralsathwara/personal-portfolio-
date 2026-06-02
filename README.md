@@ -8,8 +8,6 @@ This is my **Personal Portfolio Website**, designed and developed to showcase my
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Running the Project](#running-the-project)
 - [Components](#components)
 - [Deployment](#deployment)
 - [Contact](#contact)
@@ -55,10 +53,6 @@ This portfolio website is built with modern web technologies to create an engagi
 - 🎯 **PostCSS** – CSS transformation tool
 - 🔧 **Autoprefixer** – CSS vendor prefixing
 
-### **Backend** (Optional)
-- 🟢 **Node.js** – Runtime environment
-- 🚀 **Express.js** – Web server framework (currently not in use)
-
 ---
 
 ## 📁 Project Structure
@@ -68,7 +62,7 @@ personal portfolio/
 ├── portfolio-site/                 # React frontend application
 │   ├── public/
 │   │   ├── index.html             # Main HTML file
-│   │   └── images/                # Static images
+│   │   └── images/                # Static images & assets
 │   ├── src/
 │   │   ├── components/
 │   │   │   ├── About.js           # About section with education
@@ -83,75 +77,12 @@ personal portfolio/
 │   │   ├── index.js               # React entry point
 │   │   └── index.css              # Global styles
 │   ├── package.json               # Dependencies and scripts
-│   ├── tailwind.config.js         # Tailwind configuration
+│   ├── tailwind.config.js         # Tailwind CSS configuration
 │   └── postcss.config.js          # PostCSS configuration
-├── backend/                        # Optional backend (not currently used)
-│   ├── server.js
-│   └── package.json
 ├── package.json                    # Root package file
 ├── README.md                       # This file
-└── render.yaml                     # Render deployment config
+└── render.yaml                     # Render deployment configuration
 ```
-
----
-
-## ⚙️ Installation
-
-### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn
-- Git
-
-### Steps
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd "personal portfolio"
-   ```
-
-2. **Install frontend dependencies**
-   ```bash
-   cd portfolio-site
-   npm install
-   ```
-
-3. **Install backend dependencies** (optional)
-   ```bash
-   cd ../backend
-   npm install
-   ```
-
----
-
-## 🚀 Running the Project
-
-### Development Mode
-
-**Frontend only:**
-```bash
-cd portfolio-site
-npm start
-```
-- Opens at `http://localhost:3000`
-- Hot reload enabled for development
-
-### Production Build
-
-```bash
-cd portfolio-site
-npm run build
-```
-- Creates optimized build in `portfolio-site/build/`
-- Ready for deployment
-
-### Optional Backend Server
-```bash
-cd backend
-npm run dev
-```
-- Runs on `http://localhost:5000`
-- Requires `.env` file with email configuration
 
 ---
 
@@ -197,41 +128,16 @@ The project includes a `render.yaml` configuration file for easy deployment to R
 2. Connect your repository to Render
 3. Render will auto-deploy based on `render.yaml` configuration
 
-### Manual Deployment
+### Other Deployment Options
 1. Build the frontend: `npm run build`
-2. Serve the `portfolio-site/build/` directory
-3. Configure environment variables if using backend
+2. Deploy the `portfolio-site/build/` directory to any static hosting service (Vercel, Netlify, GitHub Pages, etc.)
 
 ---
 
-## 📝 Environment Variables
-
-If using the optional backend:
-
-Create a `.env` file in the `backend/` directory:
-```
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password
-PORT=5000
-```
-
----
-
-## 📱 Screenshots
-
-- **Hero Section**: Dynamic gradient background with profile image
-- **About Section**: Education details with smooth cards
-- **Skills Section**: Categorized skills with icon displays
-- **Projects Section**: Project cards with technology badges
-- **Contact Section**: Direct contact information and social links
-
----
 
 ## ✉️ Contact & Social
 
-- **Email**: hiralsathwara2006@gmail.com
-- **Phone**: +91 9979117384
-- **Location**: Ahmedabad, Gujarat, India
+
 - **LinkedIn**: [Hiral Sathwara](https://www.linkedin.com/in/hiral-sathwara-873561269/)
 - **GitHub**: [Hiralsathwara](https://github.com/Hiralsathwara)
 
@@ -252,16 +158,9 @@ This portfolio website is personal work. Feel free to use it as inspiration for 
 
 ---
 
-## 🚀 Future Enhancements
 
-- [ ] Add blog section
-- [ ] Implement dark/light theme toggle
-- [ ] Add animations library (Framer Motion)
-- [ ] Implement contact form backend integration
-- [ ] Add testimonials section
-- [ ] SEO optimization improvements
 
 ---
 
-**Last Updated**: April 2026
+**Last Updated**: June 2026
 
