@@ -7,13 +7,13 @@ services:
     staticPublishPath: portfolio-site/build
     rootDir: .
 
-  # Backend - Web Service
-  - type: web
-    name: portfolio-backend
-    runtime: node
-    buildCommand: cd backend && npm install
-    startCommand: cd backend && npm start
-    rootDir: .
-    envVars:
-      - key: NODE_ENV
-        value: production
+  # # Backend - Web Service
+  # - type: web
+  #   name: portfolio-backend
+  #   runtime: node
+  #   buildCommand: cd backend && npm install
+  #   startCommand: cd backend && npm start
+  #   rootDir: .
+  #   envVars:
+  #     - key: NODE_ENV
+  #       value: production
