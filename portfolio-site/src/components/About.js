@@ -1,110 +1,144 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaPython, FaJsSquare, FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaGitAlt, FaGithub, FaChartLine, FaCode } from 'react-icons/fa';
+import { SiTailwindcss, SiPandas, SiNumpy, SiScikitlearn, SiMysql, SiExpress } from 'react-icons/si';
 
-const skills = [
-  { name: 'Python', icon: '🐍', color: 'from-green-500 to-emerald-500' },
-  { name: 'Machine Learning', icon: '🤖', color: 'from-blue-500 to-cyan-500' },
-  { name: 'Artificial Intelligence (AI)', icon: '🧠', color: 'from-purple-500 to-pink-500' },
-  { name: 'React', icon: '⚛️', color: 'from-cyan-400 to-blue-400' },
-  { name: 'SQL', icon: '💾', color: 'from-orange-500 to-red-500' },
-  { name: 'Node.js', icon: '🌐', color: 'from-green-600 to-teal-600' },
-  { name: 'Express.js', icon: '🚀', color: 'from-gray-600 to-gray-400' },
-  { name: 'MongoDB', icon: '🟢', color: 'from-green-400 to-emerald-400' },
-  { name: 'MySQL', icon: '🗄️', color: 'from-blue-600 to-indigo-600' },
-  { name: 'HTML, CSS, JavaScript', icon: '🌐', color: 'from-yellow-500 to-orange-500' },
+// Skill Categories with Icons
+const skillCategories = [
+  {
+    title: 'Programming',
+    items: [
+      { name: 'Python', icon: FaPython },
+      { name: 'JavaScript', icon: FaJsSquare },
+    ],
+  },
+  {
+    title: 'Web Development',
+    items: [
+      { name: 'React', icon: FaReact },
+      { name: 'Node.js', icon: FaNodeJs },
+      { name: 'Express', icon: SiExpress },
+      { name: 'HTML', icon: FaHtml5 },
+      { name: 'CSS', icon: FaCss3Alt },
+      { name: 'Tailwind CSS', icon: SiTailwindcss },
+    ],
+  },
+  {
+    title: 'Data Science',
+    items: [
+      { name: 'Pandas', icon: SiPandas },
+      { name: 'NumPy', icon: SiNumpy },
+      { name: 'Matplotlib', icon: FaChartLine },
+      { name: 'Scikit-learn', icon: SiScikitlearn },
+    ],
+  },
+  {
+    title: 'Database',
+    items: [
+      { name: 'MySQL', icon: SiMysql },
+    ],
+  },
+  {
+    title: 'Tools',
+    items: [
+      { name: 'Git', icon: FaGitAlt },
+      { name: 'GitHub', icon: FaGithub },
+      { name: 'VS Code', icon: FaCode },
+    ],
+  },
+];
+
+// Education Data
+const education = [
+  {
+    institution: 'SAL Engineering & Technical Institute (GTU)',
+    degree: 'B.Tech in Information Technology',
+    cgpa: '8.5',
+    period: '2024 – 2027',
+    icon: '🎓',
+    gradient: 'from-blue-500 to-cyan-500',
+  },
+  {
+    institution: 'Government Girls Polytechnic, Ahmedabad (GTU)',
+    degree: 'Diploma in Information Technology',
+    cgpa: '9.5',
+    period: '2021 – 2024',
+    icon: '🎓',
+    gradient: 'from-purple-500 to-pink-500',
+  },
 ];
 
 const About = () => {
+  const [expandedCategories, setExpandedCategories] = useState({});
+
+  const toggleCategory = (title) => {
+    setExpandedCategories((prev) => ({
+      ...prev,
+      [title]: !prev[title],
+    }));
+  };
+
   return (
     <section
       id="about"
-      className="max-w-6xl mx-auto px-4 py-16 relative"
+      className="relative overflow-hidden px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
       style={{
-        background: 'linear-gradient(135deg, #1e293b 0%, #334155 50%, #1e293b 100%)',
-        borderRadius: '20px',
-        margin: '2rem',
-        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)'
+        background: 'linear-gradient(135deg, #0f172a 0%, #17233a 50%, #111827 100%)',
       }}
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden rounded-20">
-        <div className="absolute top-10 left-10 w-20 h-20 bg-cyan-500/10 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-16 h-16 bg-blue-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      {/* Background Decorations */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -left-10 top-10 h-20 w-20 sm:h-32 sm:w-32 rounded-full bg-cyan-500/10 blur-3xl animate-pulse" />
+        <div className="absolute right-10 top-1/4 h-16 w-16 sm:h-24 sm:w-24 rounded-full bg-purple-500/10 blur-3xl animate-pulse" />
+        <div className="absolute left-1/2 top-1/2 h-16 w-16 sm:h-20 sm:w-20 -translate-x-1/2 rounded-full bg-blue-500/10 blur-3xl animate-pulse" />
       </div>
 
-      <div className="relative z-10">
-        <h2 className="text-4xl font-bold mb-8 text-center">
-          <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-            About Me
+      {/* Content Container */}
+      <div className="relative z-10 mx-auto max-w-7xl">
+        {/* Header */}
+        <div className="text-center mb-12 sm:mb-16">
+          <span className="text-xs sm:text-sm uppercase tracking-[0.35em] bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent sm:text-3xl">
+            About
           </span>
-        </h2>
-
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="space-y-6">
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-cyan-500/30 transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-4 text-cyan-400">🎓 Education</h3>
-              <p className="text-gray-300 leading-relaxed">
-                Currently pursuing 3rd-year B.Tech in Information Technology at SAL Engineering & Technical Institute, Ahmedabad. Passionate about Python programming and data science.
-              </p>
-            </div>
-
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-purple-500/30 transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-4 text-purple-400">💼 Experience</h3>
-              <p className="text-gray-300 leading-relaxed">
-                Completed internships in AI and ML, gaining hands-on experience with frameworks like TensorFlow and scikit-learn. Also experienced in web development.
-              </p>
-            </div>
-          </div>
-
-          <div className="space-y-6">
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-4 text-blue-400">🛠️ Skills</h3>
-              <p className="text-gray-300 leading-relaxed">
-                Proficient in Python, data structures, OOP, web development, and advanced AI/ML topics. Strong work ethic with continuous learning mindset.
-              </p>
-            </div>
-
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-pink-500/30 transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-4 text-pink-400">🎯 Goals</h3>
-              <p className="text-gray-300 leading-relaxed">
-                Aspire to contribute to collaborative teams and further develop expertise in data science and innovative technology solutions.
-              </p>
-            </div>
-          </div>
         </div>
 
-        <h3 className="text-3xl font-semibold mb-6 text-center">
-          <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-            Technical Skills
-          </span>
-        </h3>
+        {/* Summary & Education Section */}
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-[0.95fr_1.05fr] items-start">
+          {/* Professional Summary */}
+          <div className="space-y-6">
+            <div className="rounded-2xl sm:rounded-3xl border border-slate-800/70 bg-slate-900/70 p-5 sm:p-8 shadow-[0_20px_60px_rgba(15,23,42,0.4)] backdrop-blur-xl">
+              <h3 className="text-lg sm:text-2xl font-semibold text-cyan-300 mb-3 sm:mb-4">Professional Summary</h3>
+              <p className="text-sm sm:text-base text-slate-300 leading-7 sm:leading-8">
+                Aspiring Data Scientist and Software Developer with hands-on experience in Python, Machine Learning, Data Analysis, and Full-Stack Web Development through internships and academic projects. Developed intelligent applications, including Greenify, an emotion-based recommendation system, and AIVA, demonstrating strong problem-solving, analytical, and software development skills. Skilled in Python, Machine Learning techniques, data science, SQL, React.js, Node.js, and data-driven decision-making. Seeking to leverage technical expertise, analytical thinking, and innovation to contribute to impactful technology solutions while growing as a Data Science professional.
+              </p>
+            </div>
+          </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-8">
-          {skills.map((skill, index) => (
-            <div
-              key={skill.name}
-              className="group relative bg-gray-800/70 backdrop-blur-sm rounded-xl p-4 border border-gray-700/50 hover:border-gray-600 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="text-center">
-                <div className="text-3xl mb-2 transform group-hover:scale-110 transition-transform duration-300">
-                  {skill.icon}
-                </div>
-                <div className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
-                  {skill.name}
-                </div>
+          {/* Education Section */}
+          <div className="space-y-6">
+            <div className="rounded-2xl sm:rounded-3xl border border-slate-800/70 bg-slate-900/70 p-5 sm:p-8 shadow-[0_20px_60px_rgba(15,23,42,0.4)] backdrop-blur-xl">
+              <div className="flex items-center justify-between mb-4 sm:mb-6 flex-wrap gap-2">
+                <h3 className="text-lg sm:text-2xl font-semibold text-cyan-300">Education</h3>
+                <span className="rounded-full bg-slate-800/80 px-3 py-1 text-xs uppercase tracking-[0.3em] text-slate-400">Current</span>
               </div>
-              {/* Hover glow effect */}
-              <div className={`absolute inset-0 bg-gradient-to-r ${skill.color} rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur-xl`}></div>
+              <div className="space-y-4 sm:space-y-5">
+                {education.map((edu) => (
+                  <div
+                    key={edu.institution}
+                    className="group relative overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-800/70 bg-slate-950/70 p-4 sm:p-5 transition hover:-translate-y-1 hover:border-cyan-500/30"
+                  >
+                    <div className={`absolute inset-0 bg-gradient-to-r ${edu.gradient} opacity-0 group-hover:opacity-10 blur-3xl`} />
+                    <div className="relative">
+                      <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">{edu.icon}</div>
+                      <h4 className="text-base sm:text-lg font-semibold text-white">{edu.institution}</h4>
+                      <p className="text-cyan-300 mt-1 text-sm sm:text-base">{edu.degree}</p>
+                      <p className="text-xs sm:text-sm text-slate-400 mt-2">{edu.period}</p>
+                      <p className="text-xs sm:text-sm text-slate-400 mt-1">CGPA: {edu.cgpa}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
-        </div>
-
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 text-center">
-          <h3 className="text-2xl font-semibold mb-4 text-cyan-400">💡 Fun Fact / Interest</h3>
-          <p className="italic text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto">
-            I love blending creativity with technology—when I'm not coding, I explore startup ideas, new innovations, and enjoy building projects that solve real-world problems.
-          </p>
+          </div>
         </div>
       </div>
     </section>
@@ -112,3 +146,4 @@ const About = () => {
 };
 
 export default About;
+

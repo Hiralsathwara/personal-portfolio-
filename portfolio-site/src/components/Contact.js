@@ -1,272 +1,162 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setStatus('Sending...');
-
-    try {
-      // Use environment variable for API URL, fallback to localhost for development
-      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-      const response = await fetch(`${API_URL}/api/contact`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        // Success
-        setStatus('Message sent successfully!');
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        // Backend error
-        setStatus(result.error || 'Failed to send message. Please try again.');
-      }
-    } catch (error) {
-      console.error('Network Error:', error);
-
-      // More specific error messages
-      if (error.message.includes('Failed to fetch')) {
-        setStatus('Cannot connect to server. Make sure your backend server is running on port 5000.');
-      } else {
-        setStatus('Failed to send message. Please check your internet connection and try again.');
-      }
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   const contactInfo = [
     {
-      icon: '📧',
+      icon: FaEnvelope,
       label: 'Email',
       value: 'hiralsathwara2006@gmail.com',
       href: 'mailto:hiralsathwara2006@gmail.com',
       gradient: 'from-blue-500 to-cyan-500'
     },
     {
-      icon: '📱',
+      icon: FaPhone,
       label: 'Phone',
       value: '+91 9979117384',
-      href: 'tel:+91XXXXXXXXX',
+      href: 'tel:+919979117384',
       gradient: 'from-green-500 to-emerald-500'
     },
+  ];
+
+  const socialLinks = [
     {
-      icon: '📍',
-      label: 'Location',
-      value: 'Ahmedabad, Gujarat, India',
-      href: '#',
-      gradient: 'from-purple-500 to-pink-500'
+      name: 'LinkedIn',
+      url: 'https://www.linkedin.com/in/hiral-sathwara-873561269/',
+      icon: (
+        <svg
+          fill="currentColor"
+          stroke="none"
+          viewBox="0 0 24 24"
+          className="h-6 w-6"
+          xmlns="https://www.linkedin.com/in/hiral-sathwara-873561269/"
+        >
+          <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.1c.7-1.3 2.4-2.7 4.9-2.7 5.2 0 6.2 3.4 6.2 7.8V24h-5v-7.5c0-1.8 0-4-2.4-4s-2.8 1.9-2.8 3.9V24h-5V8z" />
+        </svg>
+      ),
+      color: 'hover:text-blue-400',
+      gradient: 'from-blue-500 to-cyan-500'
     },
-    // {
-    //   icon: '💼',
-    //   label: 'LinkedIn',
-    //   value: 'Hiral Sathwara',
-    //   href: 'https://linkedin.com/in/hiralsathwara-873561269',
-    //   gradient: 'from-blue-600 to-blue-400'
-    // }
+    {
+      name: 'GitHub',
+      url: 'https://github.com/Hiralsathwara',
+      icon: (
+        <svg
+          fill="currentColor"
+          stroke="none"
+          viewBox="0 0 24 24"
+          className="h-6 w-6"
+          xmlns="https://github.com/Hiralsathwara"
+        >
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.73.083-.73 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.807 1.305 3.492.997.108-.775.418-1.305.76-1.605-2.665-.3-5.466-1.335-5.466-5.93 0-1.31.47-2.38 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 013.003-.404c1.02.005 2.045.138 3.003.404 2.29-1.552 3.296-1.23 3.296-1.23.655 1.653.243 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.807 5.625-5.48 5.92.43.37.823 1.1.823 2.22v3.293c0 .32.218.694.825.576C20.565 21.796 24 17.298 24 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+      ),
+      color: 'hover:text-gray-300',
+      gradient: 'from-gray-600 to-gray-400'
+    }
   ];
 
   return (
     <section
       id="contact"
-      className="max-w-7xl mx-auto px-4 py-16 relative"
+      className="max-w-7xl mx-auto px-4 py-12 sm:py-16 relative sm:rounded-2xl sm:m-2 lg:m-4"
       style={{
         background: 'linear-gradient(135deg, #1e1a2e 0%, #16213e 50%, #0f172a 100%)',
         borderRadius: '20px',
-        margin: '2rem',
+        margin: '0.5rem',
         boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4)'
       }}
     >
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden rounded-20">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-28 h-28 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-10 left-10 sm:top-20 sm:left-20 w-16 h-16 sm:w-32 sm:h-32 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 right-10 sm:bottom-20 sm:right-20 w-16 h-16 sm:w-28 sm:h-28 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/2 w-14 h-14 sm:w-24 sm:h-24 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
 
       <div className="relative z-10">
-        <h2 className="text-4xl font-bold mb-8 text-center">
-          <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-            Get In Touch
+        <h2 className="text-3xl sm:text-4xl mb-6 sm:mb-8 text-center">
+          <span className="text-xs sm:text-sm uppercase tracking-[0.35em] bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent sm:text-3xl">
+            Get in Touch
           </span>
         </h2>
 
-        <p className="text-center text-gray-400 mb-12 text-lg max-w-2xl mx-auto">
+        <p className="text-center text-gray-400 mb-8 sm:mb-12 text-sm sm:text-lg max-w-2xl mx-auto px-2">
           Ready to collaborate? Let's discuss your next project or just have a chat about technology and innovation!
         </p>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
           {/* Contact Information */}
-          <div className="space-y-8">
+          <div className="space-y-4 sm:space-y-8">
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-cyan-400">Contact Information</h3>
-              <div className="space-y-6">
+              <h3 className="text-lg sm:text-2xl font-bold mb-4 sm:mb-6 text-cyan-400">Contact Information</h3>
+              <div className="space-y-3 sm:space-y-6">
                 {contactInfo.map((info, index) => (
                   <div
                     key={index}
-                    className="group relative bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-gray-600/50 transition-all duration-300 hover:scale-105"
+                    className="group relative bg-gray-800/50 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-6 border border-gray-700/50 hover:border-gray-600/50 transition-all duration-300 hover:scale-105"
                   >
                     <a
                       href={info.href}
-                      className="flex items-center space-x-4"
-                      {...(info.href === '#' && { onClick: (e) => e.preventDefault() })}
+                      className="flex items-center space-x-3 sm:space-x-4"
+                      {...(info.href === '#' && { onClick: (e) => e.preventDefault() })}    
                     >
-                      <div className="text-3xl transform group-hover:scale-110 transition-transform duration-300">
-                        {info.icon}
+                      <div className="text-2xl sm:text-3xl transform group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                        <info.icon />
                       </div>
-                      <div>
-                        <h4 className="font-semibold text-white group-hover:text-cyan-400 transition-colors">
+                      <div className="min-w-0 flex-1">
+                        <h4 className="font-semibold text-white group-hover:text-cyan-400 transition-colors text-sm sm:text-base">
                           {info.label}
                         </h4>
-                        <p className="text-gray-300 group-hover:text-gray-200 transition-colors">
+                        <p className="text-gray-300 group-hover:text-gray-200 transition-colors text-xs sm:text-base break-all">
                           {info.value}
                         </p>
                       </div>
                     </a>
                     {/* Hover glow effect */}
-                    <div className={`absolute inset-0 bg-gradient-to-r ${info.gradient} rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur-xl`}></div>
+                    <div className={`absolute inset-0 bg-gradient-to-r ${info.gradient} rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur-xl`}></div>
                   </div>
                 ))}
               </div>
             </div>
+          </div>
 
-            {/* Availability Status */}
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50">
-              <h4 className="text-lg font-semibold mb-4 text-purple-400">🚀 Availability</h4>
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-gray-300">Available for freelance projects and collaborations</span>
-              </div>
-              <p className="text-sm text-gray-400 mt-2">
-                Response time: Usually within 24 hours
+          {/* Connect With Me Section */}
+          <div className="text-center lg:text-left">
+            <div className="bg-gray-800/30 backdrop-blur-sm rounded-lg sm:rounded-2xl p-4 sm:p-8 border border-gray-700/50 h-full flex flex-col justify-center">
+              <h4 className="text-lg sm:text-2xl font-bold mb-3 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+                Connect With Me
+              </h4>
+              <p className="text-gray-300 mb-4 sm:mb-8 leading-relaxed text-xs sm:text-lg">
+                Let's collaborate and build something amazing together!
+                <br />
+                <span className="text-purple-400">Always excited to work on innovative projects</span>
               </p>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="relative">
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50">
-              <h3 className="text-2xl font-bold mb-6 text-purple-400">Send Message</h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="group">
-                  <label htmlFor="name" className="block mb-2 font-semibold text-gray-300 group-focus-within:text-cyan-400 transition-colors">
-                    Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 text-white transition-all duration-300"
-                    placeholder="Your full name"
-                  />
-                </div>
-
-                <div className="group">
-                  <label htmlFor="email" className="block mb-2 font-semibold text-gray-300 group-focus-within:text-cyan-400 transition-colors">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 text-white transition-all duration-300"
-                    placeholder="your.email@example.com"
-                  />
-                </div>
-
-                <div className="group">
-                  <label htmlFor="message" className="block mb-2 font-semibold text-gray-300 group-focus-within:text-cyan-400 transition-colors">
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows="6"
-                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 text-white transition-all duration-300 resize-none"
-                    placeholder="Tell me about your project or just say hello!"
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="group relative w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                >
-                  <span className="relative z-10 flex items-center justify-center space-x-2">
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        <span>Sending...</span>
-                      </>
-                    ) : (
-                      <>
-                        <span>📤</span>
-                        <span>Send Message</span>
-                      </>
-                    )}
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-xl blur opacity-0 group-hover:opacity-75 transition-opacity duration-300"></div>
-                </button>
-              </form>
-              {status && (
-                <div className="mt-4 p-4 rounded-lg bg-gray-700/50 border border-gray-600/50">
-                  <p className="text-center text-gray-300">{status}</p>
-                </div>
-              )}
+              <div className="flex justify-center lg:justify-start gap-2 sm:gap-4">
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.name}
+                    className={`group relative p-2 sm:p-4 bg-gray-700/50 hover:bg-gray-600/50 rounded-lg sm:rounded-2xl border border-gray-600/50 hover:border-gray-500/50 transition-all duration-300 hover:scale-110 ${link.color}`}
+                  >
+                    <div className="transform group-hover:scale-110 transition-transform duration-300 text-4xl sm:text-6xl" style={{width: 'clamp(1.5rem, 4vw, 1.5rem)', height: 'clamp(1.5rem, 4vw, 1.5rem)'}}>
+                      {link.icon}
+                    </div>
+                    {/* Hover glow effect */}
+                    <div className={`absolute inset-0 bg-gradient-to-r ${link.gradient} rounded-lg sm:rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-lg`}></div>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 inline-block">
-            <h3 className="text-2xl font-bold mb-4 text-cyan-400">Let's Build Something Amazing Together!</h3>
-            <p className="text-gray-300 mb-6 max-w-md mx-auto">
-              Whether you have a project in mind or just want to connect, I'm always excited to hear from fellow developers and innovators.
-            </p>
-            <div className="flex justify-center space-x-4">
-              <a
-                href="https://www.linkedin.com/in/hiral-sathwara-873561269/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
-              >
-                💼 LinkedIn
-              </a>
-              <a
-                href="https://github.com/Hiralsathwara"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-gradient-to-r from-gray-700 to-gray-600 text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:shadow-gray-500/25 transition-all duration-300 transform hover:scale-105"
-              >
-                🐙 GitHub
-              </a>
-            </div>
-          </div>
-        </div>
+        
+        
+        
       </div>
     </section>
   );
